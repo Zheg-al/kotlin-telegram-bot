@@ -10,12 +10,15 @@ data class CallbackQueryHandlerEnvironment(
     val callbackQuery: CallbackQuery
 )
 
+data class CallbackQueryResponse(
+    val text: String? = null,
+    val showAlert: Boolean? = null,
+    val url: String? = null,
+    val cacheTime: Int? = null,
+)
+
 internal class CallbackQueryHandler(
     private val callbackData: String? = null,
-    private val callbackAnswerText: String? = null,
-    private val callbackAnswerShowAlert: Boolean? = null,
-    private val callbackAnswerUrl: String? = null,
-    private val callbackAnswerCacheTime: Int? = null,
     private val handleCallbackQuery: HandleCallbackQuery
 ) : Handler {
 
@@ -35,15 +38,15 @@ internal class CallbackQueryHandler(
             update,
             update.callbackQuery
         )
-        handleCallbackQuery(callbackQueryHandlerEnv)
+        val response = handleCallbackQuery(callbackQueryHandlerEnv)
 
         val callbackQueryId = update.callbackQuery.id
         bot.answerCallbackQuery(
             callbackQueryId = callbackQueryId,
-            text = callbackAnswerText,
-            showAlert = callbackAnswerShowAlert,
-            url = callbackAnswerUrl,
-            cacheTime = callbackAnswerCacheTime,
+            text = response?.text,
+            showAlert = response?.showAlert,
+            url = response?.url,
+            cacheTime = response?.cacheTime,
         )
     }
 }

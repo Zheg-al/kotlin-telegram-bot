@@ -69,26 +69,6 @@ fun Dispatcher.callbackQuery(data: String? = null, handleCallbackQuery: HandleCa
     addHandler(CallbackQueryHandler(callbackData = data, handleCallbackQuery = handleCallbackQuery))
 }
 
-fun Dispatcher.callbackQuery(
-    callbackData: String? = null,
-    callbackAnswerText: String? = null,
-    callbackAnswerShowAlert: Boolean? = null,
-    callbackAnswerUrl: String? = null,
-    callbackAnswerCacheTime: Int? = null,
-    handleCallbackQuery: HandleCallbackQuery
-) {
-    addHandler(
-        CallbackQueryHandler(
-            callbackData = callbackData,
-            callbackAnswerText = callbackAnswerText,
-            callbackAnswerShowAlert = callbackAnswerShowAlert,
-            callbackAnswerUrl = callbackAnswerUrl,
-            callbackAnswerCacheTime = callbackAnswerCacheTime,
-            handleCallbackQuery = handleCallbackQuery
-        )
-    )
-}
-
 fun Dispatcher.contact(handleContact: HandleContact) {
     addHandler(ContactHandler(handleContact))
 }
