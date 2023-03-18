@@ -49,11 +49,13 @@ import java.io.File as SystemFile
 fun bot(body: Bot.Builder.() -> Unit): Bot = Bot.Builder().build(body)
 
 fun Bot.Builder.dispatch(
+    preHandle: HandleUpdate = { },
     commonThrowableHandler: HandleThrowable = { _, _ -> },
     commonUpdateHandler: HandleUpdate = { },
     body: Dispatcher.() -> Unit
 ) {
     dispatcherConfiguration = body
+    this.preHandler = preHandle
     this.commonThrowableHandler = commonThrowableHandler
     this.commonUpdateHandler = commonUpdateHandler
 }
@@ -90,6 +92,7 @@ class Bot private constructor(
         var proxy: Proxy = Proxy.NO_PROXY
         internal var commonThrowableHandler: HandleThrowable = { _, _ -> }
         internal var commonUpdateHandler: HandleUpdate = { }
+        internal var preHandler: HandleUpdate = { }
         internal var dispatcherConfiguration: Dispatcher.() -> Unit = { }
 
         fun build(): Bot {
@@ -102,7 +105,10 @@ class Bot private constructor(
                 logLevel = logLevel,
                 coroutineDispatcher = Executors.newSingleThreadExecutor().asCoroutineDispatcher(),
                 commonThrowableHandler = commonThrowableHandler,
-            ).apply(dispatcherConfiguration).apply {addHandler(CommonUpdateHandler(commonUpdateHandler)) }
+            )
+                .apply { addHandler(CommonUpdateHandler(preHandler)) }
+                .apply(dispatcherConfiguration)
+                .apply { addHandler(CommonUpdateHandler(commonUpdateHandler)) }
 
             return Bot(
                 updater,
