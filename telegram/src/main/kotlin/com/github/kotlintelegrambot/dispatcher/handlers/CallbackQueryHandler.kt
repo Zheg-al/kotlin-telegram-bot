@@ -19,7 +19,7 @@ data class CallbackQueryResponse(
 
 internal class CallbackQueryHandler(
     private val callbackData: String? = null,
-    private val handleCallbackQuery: HandleCallbackQuery
+    private val handleCallbackQuery: HandleCallbackQuery,
 ) : Handler {
 
     override fun checkUpdate(update: Update): Boolean {

@@ -7,9 +7,13 @@ import java.lang.reflect.Type
 
 internal class EnumRetrofitConverterFactory : Converter.Factory() {
 
-    override fun stringConverter(type: Type?, annotations: Array<out Annotation>?, retrofit: Retrofit?): Converter<Enum<*>, String>? =
-        if (type is Class<*> && type.isEnum) {
-            Converter { enum ->
+    override fun stringConverter(
+        type: Type,
+        annotations: Array<out Annotation>,
+        retrofit: Retrofit,
+    ): Converter<Enum<*>, String>? {
+        return if (type is Class<*> && type.isEnum) {
+            Converter { enum: Enum<*> ->
                 try {
                     enum.javaClass.getField(enum.name).getAnnotation(SerializedName::class.java)?.value
                 } catch (e: NoSuchFieldException) {
@@ -19,7 +23,9 @@ internal class EnumRetrofitConverterFactory : Converter.Factory() {
         } else {
             null
         }
+    }
 
     @Suppress("NOTHING_TO_INLINE")
-    private inline fun enumSerializationError(type: Type?): Nothing = error("cannot serialize $type enum properly, please make sure it's annotated with @SerializedName")
+    private inline fun enumSerializationError(type: Type?): Nothing =
+        error("cannot serialize $type enum properly, please make sure it's annotated with @SerializedName")
 }

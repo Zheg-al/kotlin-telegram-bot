@@ -72,7 +72,7 @@ class SendDocumentIT : ApiClientIT() {
 
         val request = mockWebServer.takeRequest()
         val multipartBoundary = request.multipartBoundary
-        val requestBody = request.body.readUtf8().trimIndent()
+        val requestBody = request.body.readUtf8()
         val expectedRequestBody = String.format(
             getFileAsStringFromResources<SendDocumentIT>("sendDocumentBody.txt"),
             multipartBoundary,
@@ -101,7 +101,7 @@ class SendDocumentIT : ApiClientIT() {
 
         val request = mockWebServer.takeRequest()
         val multipartBoundary = request.multipartBoundary
-        val requestBody = request.body.readUtf8().trimIndent()
+        val requestBody = request.body.readUtf8()
         val expectedRequestBody = String.format(
             getFileAsStringFromResources<SendDocumentIT>("sendDocumentBody.txt"),
             multipartBoundary,

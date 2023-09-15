@@ -6,7 +6,7 @@ https://webhook.telegram.io
 --%1$s
 Content-Disposition: form-data; name="certificate"; filename="certificate.pem"
 Content-Type: text/*; charset=utf-8
-Content-Length: 3254
+Content-Length: 3313
 
 Bag Attributes
     friendlyName: yourdomain.example

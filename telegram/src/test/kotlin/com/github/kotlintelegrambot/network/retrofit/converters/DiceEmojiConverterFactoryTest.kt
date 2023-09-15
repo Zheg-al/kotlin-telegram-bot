@@ -3,8 +3,9 @@ package com.github.kotlintelegrambot.network.retrofit.converters
 import com.github.kotlintelegrambot.entities.Message
 import com.github.kotlintelegrambot.entities.dice.DiceEmoji
 import io.mockk.mockk
-import junit.framework.TestCase.assertEquals
-import junit.framework.TestCase.assertNull
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.Test
 import retrofit2.Retrofit
 

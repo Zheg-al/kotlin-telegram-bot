@@ -691,63 +691,6 @@ class Bot private constructor(
         replyMarkup
     )
 
-    @Deprecated("Use overloaded version instead")
-    fun sendAnimation(
-        chatId: ChatId,
-        animation: SystemFile,
-        duration: Int? = null,
-        width: Int? = null,
-        height: Int? = null,
-        caption: String? = null,
-        parseMode: String? = null,
-        disableNotification: Boolean? = null,
-        replyToMessageId: Long? = null,
-        allowSendingWithoutReply: Boolean? = null,
-        replyMarkup: ReplyMarkup? = null
-    ) = apiClient.sendAnimation(
-        chatId,
-        animation,
-        duration,
-        width,
-        height,
-        caption,
-        parseMode,
-        disableNotification,
-        replyToMessageId,
-        allowSendingWithoutReply,
-        replyMarkup
-    ).call()
-
-    @Deprecated(
-        "Use overloaded version instead",
-        ReplaceWith("sendAnimation(chatId, TelegramFile.ByFileId(fileId), duration, width, height, caption, parseMode, disableNotification, replyToMessageId, allowSendingWithoutReply, replyMarkup)")
-    )
-    fun sendAnimation(
-        chatId: ChatId,
-        fileId: String,
-        duration: Int? = null,
-        width: Int? = null,
-        height: Int? = null,
-        caption: String? = null,
-        parseMode: ParseMode? = null,
-        disableNotification: Boolean? = null,
-        replyToMessageId: Long? = null,
-        allowSendingWithoutReply: Boolean? = null,
-        replyMarkup: ReplyMarkup? = null
-    ) = apiClient.sendAnimation(
-        chatId,
-        TelegramFile.ByFileId(fileId),
-        duration,
-        width,
-        height,
-        caption,
-        parseMode,
-        disableNotification,
-        replyToMessageId,
-        allowSendingWithoutReply,
-        replyMarkup
-    ).call()
-
     fun sendAnimation(
         chatId: ChatId,
         animation: TelegramFile,
@@ -774,90 +717,6 @@ class Bot private constructor(
         replyMarkup
     ).call()
 
-    @Deprecated(
-        "Use overloaded version instead",
-        ReplaceWith("sendVoice(chatId, TelegramFile.ByByteArray(audio), caption, parseMode, captionEntities, duration, disableNotification, replyToMessageId, allowSendingWithoutReply, replyMarkup)")
-    )
-    fun sendVoice(
-        chatId: ChatId,
-        audio: ByteArray,
-        caption: String? = null,
-        parseMode: ParseMode? = null,
-        captionEntities: List<MessageEntity>? = null,
-        duration: Int? = null,
-        disableNotification: Boolean? = null,
-        replyToMessageId: Long? = null,
-        allowSendingWithoutReply: Boolean? = null,
-        replyMarkup: ReplyMarkup? = null
-    ) = apiClient.sendVoice(
-        chatId,
-        TelegramFile.ByByteArray(audio),
-        caption,
-        parseMode,
-        captionEntities,
-        duration,
-        disableNotification,
-        replyToMessageId,
-        allowSendingWithoutReply,
-        replyMarkup
-    ).call()
-
-    @Deprecated(
-        "Use overloaded version instead",
-        ReplaceWith("sendVoice(chatId, TelegramFile.ByFile(audio), caption, parseMode, captionEntities, duration, disableNotification, replyToMessageId, allowSendingWithoutReply, replyMarkup)")
-    )
-    fun sendVoice(
-        chatId: ChatId,
-        audio: SystemFile,
-        caption: String? = null,
-        parseMode: ParseMode? = null,
-        captionEntities: List<MessageEntity>? = null,
-        duration: Int? = null,
-        disableNotification: Boolean? = null,
-        replyToMessageId: Long? = null,
-        allowSendingWithoutReply: Boolean? = null,
-        replyMarkup: ReplyMarkup? = null
-    ) = apiClient.sendVoice(
-        chatId,
-        TelegramFile.ByFile(audio),
-        caption,
-        parseMode,
-        captionEntities,
-        duration,
-        disableNotification,
-        replyToMessageId,
-        allowSendingWithoutReply,
-        replyMarkup
-    ).call()
-
-    @Deprecated(
-        "Use overloaded version instead",
-        ReplaceWith("sendVoice(chatId, TelegramFile.ByFileId(audioId), caption, parseMode, captionEntities, duration, disableNotification, replyToMessageId, allowSendingWithoutReply, replyMarkup)")
-    )
-    fun sendVoice(
-        chatId: ChatId,
-        audioId: String,
-        caption: String? = null,
-        parseMode: ParseMode? = null,
-        captionEntities: List<MessageEntity>? = null,
-        duration: Int? = null,
-        disableNotification: Boolean? = null,
-        replyToMessageId: Long? = null,
-        allowSendingWithoutReply: Boolean? = null,
-        replyMarkup: ReplyMarkup? = null
-    ) = apiClient.sendVoice(
-        chatId,
-        TelegramFile.ByFileId(audioId),
-        caption,
-        parseMode,
-        captionEntities,
-        duration,
-        disableNotification,
-        replyToMessageId,
-        allowSendingWithoutReply,
-        replyMarkup
-    ).call()
-
     fun sendVoice(
         chatId: ChatId,
         audio: TelegramFile,
@@ -876,54 +735,6 @@ class Bot private constructor(
         parseMode,
         captionEntities,
         duration,
-        disableNotification,
-        replyToMessageId,
-        allowSendingWithoutReply,
-        replyMarkup
-    ).call()
-
-    @Deprecated(
-        "Use overloaded version instead",
-        ReplaceWith("sendVideoNote(chatId, TelegramFile.ByFile(videoNote), duration, length, disableNotification, replyToMessageId, allowSendingWithoutReply, replyMarkup)")
-    )
-    fun sendVideoNote(
-        chatId: ChatId,
-        videoNote: SystemFile,
-        duration: Int? = null,
-        length: Int? = null,
-        disableNotification: Boolean? = null,
-        replyToMessageId: Long? = null,
-        allowSendingWithoutReply: Boolean? = null,
-        replyMarkup: ReplyMarkup? = null
-    ) = apiClient.sendVideoNote(
-        chatId,
-        TelegramFile.ByFile(videoNote),
-        duration,
-        length,
-        disableNotification,
-        replyToMessageId,
-        allowSendingWithoutReply,
-        replyMarkup
-    ).call()
-
-    @Deprecated(
-        "Use overloaded version instead",
-        ReplaceWith("sendVideoNote(chatId, TelegramFile.ByFileId(videoNoteId), duration, length, disableNotification, replyToMessageId, allowSendingWithoutReply, replyMarkup)")
-    )
-    fun sendVideoNote(
-        chatId: ChatId,
-        videoNoteId: String,
-        duration: Int? = null,
-        length: Int? = null,
-        disableNotification: Boolean? = null,
-        replyToMessageId: Long? = null,
-        allowSendingWithoutReply: Boolean? = null,
-        replyMarkup: ReplyMarkup? = null
-    ) = apiClient.sendVideoNote(
-        chatId,
-        TelegramFile.ByFileId(videoNoteId),
-        duration,
-        length,
         disableNotification,
         replyToMessageId,
         allowSendingWithoutReply,

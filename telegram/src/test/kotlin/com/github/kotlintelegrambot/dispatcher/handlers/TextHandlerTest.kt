@@ -7,9 +7,11 @@ import io.mockk.coVerify
 import io.mockk.mockk
 import junit.framework.TestCase.assertFalse
 import junit.framework.TestCase.assertTrue
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Test
 
+@ExperimentalCoroutinesApi
 class TextHandlerTest {
 
     private val handleTextMock = mockk<HandleText>(relaxed = true)

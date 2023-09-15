@@ -7,11 +7,13 @@ import com.github.kotlintelegrambot.extensions.filters.Filter
 import io.mockk.coVerify
 import io.mockk.every
 import io.mockk.mockk
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
+@ExperimentalCoroutinesApi
 class MessageHandlerTest {
 
     private val handlerMock = mockk<HandleMessage>(relaxed = true)

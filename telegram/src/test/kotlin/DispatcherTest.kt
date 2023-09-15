@@ -13,6 +13,7 @@ import io.mockk.just
 import io.mockk.mockk
 import io.mockk.runs
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.StandardTestDispatcher
 import kotlinx.coroutines.test.advanceUntilIdle
 import kotlinx.coroutines.test.runTest
@@ -20,15 +21,17 @@ import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import java.util.concurrent.BlockingQueue
 
+@ExperimentalCoroutinesApi
 class DispatcherTest {
 
     private val botMock = mockk<Bot>()
     private val blockingQueueMock = mockk<BlockingQueue<DispatchableObject>>()
 
     private fun createDispatcher(coroutineDispatcher: CoroutineDispatcher) = Dispatcher(
-        blockingQueueMock,
-        LogLevel.None,
-        coroutineDispatcher,
+        updatesQueue = blockingQueueMock,
+        logLevel = LogLevel.None,
+        commonThrowableHandler = { _, _ -> },
+        coroutineDispatcher = coroutineDispatcher,
     ).apply {
         bot = botMock
     }

@@ -6,11 +6,13 @@ import anyUpdate
 import com.github.kotlintelegrambot.Bot
 import io.mockk.coVerify
 import io.mockk.mockk
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.runTest
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
+@ExperimentalCoroutinesApi
 class MyChatMemberHandlerTest {
 
     private val handleMyChatMemberMock = mockk<HandleMyChatMember>(relaxed = true)

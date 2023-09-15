@@ -4,8 +4,10 @@ import com.google.gson.annotations.SerializedName
 import io.mockk.mockk
 import junit.framework.TestCase.assertEquals
 import junit.framework.TestCase.assertNull
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import retrofit2.Converter
 import retrofit2.Retrofit
 import java.lang.IllegalStateException
 
@@ -21,7 +23,7 @@ class EnumRetrofitConverterFactoryTest {
     }
 
     data class TestClass(
-        val testAttr: Int
+        val testAttr: Int,
     ) {
 
         enum class InnerEnum {
@@ -56,7 +58,8 @@ class EnumRetrofitConverterFactoryTest {
             stringConverter?.convert(RegularEnum.ENUM_A)
         }
 
-        val expectedErrorMessage = "cannot serialize ${RegularEnum::class.java} enum properly, please make sure it's annotated with @SerializedName"
+        val expectedErrorMessage =
+            "cannot serialize ${RegularEnum::class.java} enum properly, please make sure it's annotated with @SerializedName"
         assertEquals(expectedErrorMessage, error.message)
     }
 
